@@ -83,7 +83,83 @@ async function sendMessage(data) {
 
 Lucia: "Inside `sendMessage`, I parse out the [1] question_id_string and [2] vote, [3] update the current count kept in the "decoded" variable, while [4][5] updating the state of the buttons as well."
 
-## Step 5: 
+## Step 5: the consumer 
 
+```javascript
+  await consumer.run({
+    eachMessage: async ({topic, partition, message }) => {
 
+      [1] total_count = JSON.parse(message.value.toString())
+
+      [2] const messageFiltered = Object.entries(total_count).filter((vote) => vote[1].lastClicked === true)
+
+      [3] question_id = messageFiltered[0][0]
+      [4] count = messageFiltered[0][1]
+
+      [5] io.sockets.emit("event", {
+        message: { question_id, count },
+      });
+    }
+  });
+}
+```
+
+Lucia: "Now, in my Kafka consumer, I am parsing the incoming message which holds the vote state, [2] filtering for the last clicked message, creating variables to hold the current [3] question_id and [4] count, and [5] then sending the message to my websocket."
+
+## Step 6: the user interface
+
+```javascript
+      [1] socket.on("event", function (message) {
+
+        [2] progress_bar_id = `${message.message.question_id}`;
+
+        [3] let progressBar = document.getElementById(
+          `${progress_bar_id}-progress`,
+        );
+
+        [4] let labelForBar = document.getElementById(`${progress_bar_id}-label`);
+
+        //if length is one then ignore as result of retraction in potential FlinkSQL developments in later versions
+        if (Object.keys(message.message.count).length == 1) {
+          //don't do anything
+        [5] } else if (
+          Object.values(message.message.count)[0] >
+          Object.values(message.message.count)[1]
+        ) {
+          value = Object.values(message.message.count)[0];
+          max =
+            Object.values(message.message.count)[0] +
+            Object.values(message.message.count)[1];
+          progressBar.setAttribute("value", value);
+          progressBar.setAttribute("max", max);
+         [a] labelForBar.innerHTML = `${Object.keys(message.message.count)[0]} wins  with ${Object.values(message.message.count)[0]} votes out of ${max}`;
+       [6] } else if (
+          Object.values(message.message.count)[0] ===
+          Object.values(message.message.count)[1]
+        ) {
+          value = Object.values(message.message.count)[0];
+          max =
+            Object.values(message.message.count)[0] +
+            Object.values(message.message.count)[1];
+          progressBar.setAttribute("value", value);
+          progressBar.setAttribute("max", max);
+         [b] labelForBar.innerHTML = `It's a tie! There were ${max} total votes`;
+        [7] } else {
+          value = Object.values(message.message.count)[1];
+          max =
+            Object.values(message.message.count)[0] +
+            Object.values(message.message.count)[1];
+          progressBar.setAttribute("value", value);
+          progressBar.setAttribute("max", max);
+         [c] labelForBar.innerHTML = `${Object.keys(message.message.count)[1]} wins  with ${Object.values(message.message.count)[1]} votes out of ${max}`;
+        }
+        showProgressBar(progress_bar_id);
+      });
+```
+Lucia: "Here in the frontend, I'm writing some logic that triggers when the [1] socket receives an event. [2] Then I create a variable for the question_id, and [3] retrieve the DOM element corresponding to that id. 
+[4] I retrieve the label for that bar as well, which I'll [a][b][c] update in the following chain of logic. Then, I check if the [5] left-hand option has more votes, [6] if there's been a tie, or if in the remaining case, [7], the right-hand side has more votes. I then update the DOM accordingly."
+
+## Outro:
+
+Lucia: "And that's pretty much it for the essential code. If you want to see the whole sample repository and get this running yourself, check out the links below. There's lots more to be done with this demo. Perhaps, instead of updating the state in the backend, I could do some processing and create an aggregation with FlinkSQL... or should I use Kafka Streams? [flash to screen recording of interface with the KStreams/FlinkSQL question] Or, what if you wanted to see what percentage of developers who voted for tabs also voted for rebase? What would we do if you wanted to be able to _change_ your vote? Or fingerprint the users so they couldn't cheat? I'll leave these features as a challenge for you, my dear viewers. Don't forget to like and subscribe. Until next time!" 
 
