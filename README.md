@@ -2,14 +2,14 @@
 
 ## Intro 
 
-[Lucia on screen]
-"Tabs or Spaces? merge or rebase? Vim or Emacs? These question have plagued developers for centuries! Ok, maybe not "centuries", [show_screen_recording_of_votes_here] but I decided to take the problem into my own hands and host a poll. You can cast your own vote at the link below. 
+_[Lucia on screen]_
+"Tabs or Spaces? merge or rebase? Vim or Emacs? These question have plagued developers for centuries! Ok, maybe not "centuries", _[show_screen_recording_of_votes_here]_ but I decided to take the problem into my own hands and host a poll. You can cast your own vote at the link below. 
 
-...I'm Lucia Cerchie at Confluent, and in this video, I'm going to tell you how I made this website. [switch back to Lucia on screen]
+...I'm Lucia Cerchie at Confluent, and in this video, I'm going to tell you how I made this website. _[switch back to Lucia on screen]_
 
 Here's my stack: on the frontend, I stuck with CSS, HTML, and mostly vanilla JavaScript so that anyone using a higher level framework would be able to translate the logic. 
 
-[show screen recording of button click] When you click on a button in the frontend, [show slides of stack diagram] I collect the information about your vote via an Express.js route. Then, I retrieve the current state of the vote count from a Kafka topic with a Kafka consumer and update it with that information, using a Kafka producer to send the new message containing that information to the topic. Then I create a second Kafka consumer that fires the new vote count to a websocket every time a message comes in. To create the Kafka producer and consumer, I've used confluent-kafka-javascript, which as I record, is not in general availability but is in early access at the link below. 
+_[show screen recording of button click]_ When you click on a button in the frontend, _[show slides of stack diagram]_ I collect the information about your vote via an Express.js route. Then, I retrieve the current state of the vote count from a Kafka topic with a Kafka consumer and update it with that information, using a Kafka producer to send the new message containing that information to the topic. Then I create a second Kafka consumer that fires the new vote count to a websocket every time a message comes in. To create the Kafka producer and consumer, I've used confluent-kafka-javascript, which as I record, is not in general availability but is in early access at the link below. 
 
 My frontend is listening to that websocket, and it updates the progress bar with the information. This is all hosted on AWS." 
 
@@ -161,5 +161,5 @@ Lucia: "Here in the frontend, I'm writing some logic that triggers when the [1] 
 
 ## Outro:
 
-Lucia: "And that's pretty much it for the essential code. If you want to see the whole sample repository and get this running yourself, check out the links below. There's lots more to be done with this demo. Perhaps, instead of updating the state in the backend, I could do some processing and create an aggregation with FlinkSQL... or should I use Kafka Streams? [flash to screen recording of interface with the KStreams/FlinkSQL question] Or, what if you wanted to see what percentage of developers who voted for tabs also voted for rebase? What would we do if you wanted to be able to _change_ your vote? Or fingerprint the users so they couldn't cheat? I'll leave these features as a challenge for you, my dear viewers. Don't forget to like and subscribe. Until next time!" 
+Lucia: "And that's pretty much it for the essential code. If you want to see the whole sample repository and get this running yourself, check out the links below. There's lots more to be done with this demo. Perhaps, instead of updating the state in the backend, I could do some processing and create an aggregation with FlinkSQL... or should I use Kafka Streams? _[flash to screen recording of interface with the KStreams/FlinkSQL question]_ Or, what if you wanted to see what percentage of developers who voted for tabs also voted for rebase? What would we do if you wanted to be able to change your vote? Or fingerprint the users so they couldn't cheat? I'll leave these features as a challenge for you, my dear viewers. Don't forget to like and subscribe. Until next time!" 
 
