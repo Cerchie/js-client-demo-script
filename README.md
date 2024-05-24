@@ -9,7 +9,7 @@
 
 Here's my stack: on the frontend, I stuck with CSS, HTML, and mostly vanilla JavaScript so that anyone using a higher level framework would be able to translate the logic. 
 
-[show screen recording of button click] When you click on a button in the frontend, [show slides of stack diagram] I collect the information about your vote via an Express.js route. Then, I retrieve the current state of the vote count from a Kafka topic with a Kafka consumer and update it with that information, using a Kafka producer to send the new message containing that information to the topic. Then I create a second Kafka consumer that fires the new vote count to a websocket every time a message comes in.  
+[show screen recording of button click] When you click on a button in the frontend, [show slides of stack diagram] I collect the information about your vote via an Express.js route. Then, I retrieve the current state of the vote count from a Kafka topic with a Kafka consumer and update it with that information, using a Kafka producer to send the new message containing that information to the topic. Then I create a second Kafka consumer that fires the new vote count to a websocket every time a message comes in. To create the Kafka producer and consumer, I've used confluent-kafka-javascript, which as I record, is not in general availability but is in early access at the link below. 
 
 My frontend is listening to that websocket, and it updates the progress bar with the information. This is all hosted on AWS." 
 
@@ -83,7 +83,7 @@ async function sendMessage(data) {
 
 Lucia: "Inside `sendMessage`, I parse out the [1] question_id_string and [2] vote, [3] update the current count kept in the "decoded" variable, while [4][5] updating the state of the buttons as well."
 
-
+## Step 5: 
 
 
 
