@@ -1,7 +1,7 @@
 ## Intro 
 
 [Lucia on screen]
-"Tabs or Spaces? merge or rebase? Vim or Emacs? These question have plagued developers for centuries! Ok, maybe not "centuries", [show_screen_recording_of_votes_here] but I decided to take the problem into my own hands and host a poll. You can cast your own vote at the link below. 
+"Tabs or Spaces? merge or rebase? Vim or Emacs? These questions have plagued developers for centuries! Ok, maybe not "centuries", [show_screen_recording_of_votes_here] but I decided to take the problem into my own hands and host a poll. You can cast your own vote at the link below. 
 
 ...I'm Lucia Cerchie at Confluent, and in this video, I'm going to tell you how I made this website. [switch back to Lucia on screen]
 
