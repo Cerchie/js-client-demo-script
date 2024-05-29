@@ -129,7 +129,6 @@ Lucia: "Now, in my Kafka consumer, I am parsing the incoming message which holds
 
         [4] let labelForBar = document.getElementById(`${progress_bar_id}-label`);
          let max = Object.values(message.message.count)[0] + Object.values(message.message.count)[1];
-         let max = Object.values(message.message.count)[0] + Object.values(message.message.count)[1];
         //if length is one then ignore as result of retraction in potential FlinkSQL developments in later versions
         if (Object.keys(message.message.count).length == 1) {
           //don't do anything
