@@ -114,7 +114,7 @@ Lucia: "Inside `sendMessage`, I parse out the [1] question_id_string and [2] vot
 }
 ```
 
-Lucia: "Now, in my Kafka consumer, I am parsing the incoming message which holds the vote state, [2] filtering for the last clicked message, creating variables to hold the current [3] question_id and [4] count, and [5] then sending the message to my websocket. You might notice that the syntax here is slightly different from the syntax in the first consumer. That's because this consumer uses the promisified API, versus the first consumer, which uses the API that avails itself of the features in node-rdkafka. This [6] `consumer.run` method from the promisified API feedds our function one message at a time using the [7] `eachMessage` handler."
+Lucia: "Now, in my Kafka consumer, I am parsing the incoming message which holds the vote state, [2] filtering for the last clicked message, creating variables to hold the current [3] question_id and [4] count, and [5] then sending the message to my websocket. You might notice that the syntax here is slightly different from the syntax in the first consumer. That's because this consumer uses the promisified API, versus the first consumer, which uses the API that avails itself of the features in node-rdkafka. This [6] `consumer.run` method from the promisified API feeds our function one message at a time using the [7] `eachMessage` handler."
 
 ## Step 6: the user interface
 
