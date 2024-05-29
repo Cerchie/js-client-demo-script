@@ -3,7 +3,7 @@
 ## Intro 
 
 [Lucia on screen]
-"Tabs or Spaces? merge or rebase? Vim or Emacs? These questions have plagued developers for centuries! Ok, maybe not "centuries", [show_screen_recording_of_votes_here] but I decided to take the problem into my own hands and host a poll. And I'm going to show you how I did it using web development tools and Apache Kafka. You can cast your own vote at the link below. 
+"Tabs or Spaces? merge or rebase? Vim or Emacs? These questions have plagued developers for centuries! Ok, maybe not "centuries", [website-1.mov] but I decided to take the problem into my own hands and host a poll. And I'm going to show you how I did it using web development tools and Apache Kafka. You can cast your own vote at the link below. 
 
 ...I'm Lucia Cerchie at Confluent, and in this video, I'm going to tell you how I made this website. [switch back to Lucia on screen]
 
@@ -11,7 +11,7 @@ Here's my stack: on the frontend, I stuck with CSS, HTML, and mostly vanilla Jav
 
 [show screen recording of button click] When you click on a button in the frontend, [show slides of stack diagram] I collect the information about your vote via an Express.js route. Then, I retrieve the current state of the vote count from a Kafka topic with a Kafka consumer and update it with that information, using a Kafka producer to send the new message containing that information to the topic. Then I create a second Kafka consumer that fires the new vote count to a websocket every time a message comes in. To create the Kafka producer and consumer, I've used confluent-kafka-javascript, which as I record, is not in general availability but is in early access at the link below. My frontend is listening to that websocket, and it updates the progress bar with the information. This is all hosted on AWS.
 
-You might be wondering why I chose to use Kafka. Great question! As web developers, we often store things like poll data in databases. Kafka's status as a database is up for debate, but it can store our data and support our _live_ visualization of the poll. [switch to screen showing live poll updates] In addition, should we choose to process our poll data later, we'll have access to streaming data processing tools like FlinkSQL and KStreams. 
+You might be wondering why I chose to use Kafka. Great question! As web developers, we often store things like poll data in databases. Kafka's status as a database is up for debate, but it can store our data and support our _live_ visualization of the poll. [website-2.mov] In addition, should we choose to process our poll data later, we'll have access to streaming data processing tools like FlinkSQL and KStreams. 
 " 
 
 ## Step 1: Sending information to the Express route
